@@ -1,30 +1,32 @@
 Source: libplack-middleware-proxy-requests-perl
 Section: perl
 Priority: optional
-Maintainer: Piotr Roszatycki <dexter@debian.org>
-Build-Depends: debhelper (>= 9.20120312)
-Build-Depends-Indep: perl
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: Piotr Roszatycki <dexter@debian.org>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libplack-app-proxy-perl
 Standards-Version: 3.9.5
 Homepage: https://metacpan.org/release/Plack-Middleware-Proxy-Requests
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-perl/packages/libplack-middleware-proxy-requests-perl.git
+Vcs-Git: git://anonscm.debian.org/pkg-perl/packages/libplack-middleware-proxy-requests-perl.git
 
 Package: libplack-middleware-proxy-requests-perl
 Architecture: all
 Depends: ${misc:Depends}, ${perl:Depends}
-Description: Forward proxy server
+Recommends: twiggy | starman | starlet,
+            libplack-middleware-cache-perl
+Description: Plack::Middleware::Proxy::Requests - forward proxy server
  Plack::Middleware::Proxy::Requests handles HTTP requests as a forward proxy
  server.
  .
  Its job is to set a plack.proxy.url environment variable based on REQUEST_URI
  variable.
  .
- The HTTP responses from the Internet might be invalid. In that case it is
- required to run the server without Plack::Middleware::Lint module. This
- module is started by default and disabled if -E or --no-default-middleware
- option is used when starting plackup script. Note that this disable also
- Plack::Middleware::AccessLog so it have to be enabled explicitly if needed.
+ With this middleware it is possible to start the simplest standalone proxy
+ server from the command line:
  .
- The default server Plack::Server::PSGI alias Standalone can hang up on
- stalled connection. It is better to run proxy server with Starlet, Starman or
- Twiggy.
+   twiggy -MPlack::App::Proxy -e \
+   'enable q{Proxy::Requests}; Plack::App::Proxy->new->to_app'
  .
- This description was automagically extracted from the module by dh-make-perl.
+ The default server Plack::Server::PSGI alias Standalone can hang up on stalled
+ connection. It is better to run proxy server with Starlet, Starman or Twiggy.
