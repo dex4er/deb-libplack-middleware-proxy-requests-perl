@@ -1,0 +1,6 @@
+/*.log
+/*.substvars
+/files
+/tmp/
+
+/libplack-middleware-proxy-requests-perl/
