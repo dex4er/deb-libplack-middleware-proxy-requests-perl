@@ -1,0 +1,5 @@
+libplack-middleware-proxy-requests-perl (0.0102-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue, 3 Dec 2013 16:07:09 +0100
